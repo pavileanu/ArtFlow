@@ -1,8 +1,12 @@
 class HomeController < ApplicationController
 
-def index
- @project = Project.find(1)
+	def index
+     begin
+		@project = Project.find(1)
+     rescue ActiveRecord::RecordNotFound
+        @project = Project.new
+     end
 
-end
+	end
 
 end

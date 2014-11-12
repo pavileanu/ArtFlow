@@ -41,9 +41,10 @@ section#sidebar {
 			h1#recent {
 				background: transparent url('/assets/txt_recent-activity.png')
 				no-repeat scroll top left;
-				margin: 5px 0 0 0;
+				//margin: 5px 0 0 0;
 				padding: 0;
-				text-indent: -999px;
+				color: white;
+				//text-indent: -999px;
 			}
 		}
 	}
