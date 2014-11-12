@@ -1,0 +1,20 @@
+
+
+<% content_for :title do %>
+   There is a content title :P
+<% end %>
+
+<% content_for :sidebar do %>
+<section id='assigned_designers'>
+	<header><h1>Assigned Designers</h1></header>
+	<ul>
+		<%= render @project.designers %> <!-- face figuri si am facut partialul -->
+	</ul>
+</section>
+<% end %>
+<article>
+	<header>
+		<h1><%= @project.name %></h1>
+	</header>
+	<!-- Project information -->
+</article>
