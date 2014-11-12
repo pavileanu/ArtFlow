@@ -1,8 +1,12 @@
 class CreationsController < ApplicationController
-  before_action :set_creation, only: [:show, :edit, :update, :destroy]
+  before_action :set_creation, only: [:show, :edit, :update, :destroy, :permissions]
 
   # GET /creations
   # GET /creations.json
+ 
+  def permissions
+  end
+
   def index
     @creations = Creation.all
   end

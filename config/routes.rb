@@ -1,8 +1,12 @@
 Rails.application.routes.draw do
-  
+
   resources :campaigns
 
-  resources :creations
+  resources :creations do
+    member do
+      get 'permissions'
+    end
+  end
 
   resources :designers
 

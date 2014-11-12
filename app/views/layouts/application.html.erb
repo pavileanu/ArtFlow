@@ -3,39 +3,59 @@
 <html>
 <head>
 	<title>
-	    <% if content_for?(:title) %>
+		<% if content_for?(:title) %>
 		ArtFlow: <%= yield :title %>
 		<% else %>
 		Artflow
 		<% end %>
 	</title>
-		<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-		<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-		<%= csrf_meta_tags %>
-	</head>
-	<body>
+	<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+	<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+	<%= csrf_meta_tags %>
+</head>
+<body>
 
-		<%= render 'layouts/header' %>
+	<%= render 'layouts/header' %>
 
-		<%= image_tag("tagline.png",
-			alt: "Creative File Management Made Easy",
-			id: "tagline") %>
+	<%= image_tag("tagline.png",
+		alt: "Creative File Management Made Easy",
+		id: "tagline") %>
+		<% if notice %>
+		<p class="notification notice">
+			<%= notice %>
+		</p>
+		<% end %>
+		<% if alert %>
+		<p class="notification alert">
+			<%= alert %>
+		</p>
+		<% end %>
+		<div class="container">
+			<section id="content">
+				<%= yield %>
+			</section>
 
-			<div class="container">
-				<section id="content">
-					<%= yield %>
+			<section id="sidebar">
+				<nav id="functional_nav">
+					<ul>
+						<!--  if current_user && current_user.designer? -->
+						<li><%= link_to 'Add Creation', new_creation_path %></li>
+						<% content_for :functional_nav do %>
+						<li><%= link_to 'Edit this creation', @creation %></li>
+						<% end %>
+						<!--  end  -->
+						<%= yield :functional_nav %>
+					</ul>
+				</nav>					
+				<%= yield :sidebar %>
+				<section id="recent_activity">
+					<header><h1 class="ir" id="recent">Recent Activity</h1></header>
+					<%= render partial: 'activity_items/recent' %>
 				</section>
+			</section>
+		</div>
 
-				<section id="sidebar">
-					<%= yield :sidebar %>
-					<section id="recent_activity">
-						<header><h1 class="ir" id="recent">Recent Activity</h1></header>
-						<%= render partial: 'activity_items/recent' %>
-					</section>
-				</section>
-			</div>
+		<%= render 'layouts/footer' %>
 
-			<%= render 'layouts/footer' %>
-
-		</body>
-		</html>
+	</body>
+	</html>
